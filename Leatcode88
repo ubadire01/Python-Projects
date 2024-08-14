@@ -1,0 +1,23 @@
+class Solution(object):
+    def merge(self, nums1, m, nums2, n):
+        x = m - 1  # Initializing the x pointer for nums1, pointing to the last element of nums1's actual data.
+        y = n - 1  # Initializing the y pointer for nums2, pointing to the last element of nums2.
+        z = m + n - 1  # Initialize z pointer to the last index of nums1, where the largest element should go.
+
+        while z >= 0:  # Iterate from the end of nums1 to the start.
+            if y < 0:  # If y is out of bounds, it means all elements from nums2 are merged.
+                break  # We can stop since the remaining elements are already in place in nums1.
+            elif x < 0:  # If x is out of bounds, it means nums1 is exhausted.
+                nums1[z] = nums2[y]  # Directly take elements from nums2.
+                y -= 1  # Move the pointer in nums2 to the left.
+            elif nums1[x] > nums2[y]:  # If current element in nums1 is larger than in nums2.
+                nums1[z] = nums1[x]  # Place nums1[x] at the current position z.
+                x -= 1  # Move the pointer in nums1 to the left.
+            else:  # If current element in nums2 is larger or equal to nums1.
+                nums1[z] = nums2[y]  # Place nums2[y] at the current position z.
+                y -= 1  # Move the pointer in nums2 to the left.
+            z -= 1  # Move the z pointer to the left to place the next largest element.
+
+
+
+        
