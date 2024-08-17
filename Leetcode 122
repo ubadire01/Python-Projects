@@ -1,0 +1,9 @@
+class Solution(object):
+    def maxProfit(self, prices):
+        count = 0  # Initialize the profit counter
+        for i in range(len(prices) - 1):  # Iterate over the list, but stop before the last element
+            if prices[i] < prices[i+1]:  # Compare the current price with the next price
+                price_diff = prices[i+1] - prices[i]  # Calculate the difference
+                count += price_diff  # Add the difference to the profit counter
+
+        return count  # Return the total profit
