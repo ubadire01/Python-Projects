@@ -1,16 +1,27 @@
-# Definition for singly-linked list.
-# class ListNode:
-#     def __init__(self, val=0, next=None):
-#         self.val = val
-#         self.next = next
 class Solution:
     def reverseList(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        # Initialize two pointers, 'prev' and 'curr'
+        # 'prev' will eventually become the new head of the reversed list
+        # 'curr' is used to traverse through the original list, starting from 'head'
         prev, curr = None, head
 
+        # Loop until we reach the end of the list (when 'curr' becomes None)
         while curr:
-            nxt = curr.next
+            # Store the next node in 'nxt' before we change the link
+            nxt = curr.next  # 'nxt' now points to the next node in the list
+            
+            # Reverse the current node's pointer
+            # Instead of pointing to the next node, it now points to 'prev'
             curr.next = prev
+            
+            # Move 'prev' to the current node
+            # 'prev' will now point to the current node, which is the head of the reversed part of the list
             prev = curr
+            
+            # Move 'curr' to the next node in the original list
+            # 'curr' advances to the node that was stored in 'nxt'
             curr = nxt
-        return prev
         
+        # At the end of the loop, 'prev' will point to the new head of the reversed list
+        # We return 'prev' as the new head of the reversed linked list
+        return prev
