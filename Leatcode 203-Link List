@@ -1,0 +1,23 @@
+class Solution:
+    def removeElements(self, head: Optional[ListNode], val: int) -> Optional[ListNode]:
+        # Create a dummy node that points to the head of the list
+        dummy = ListNode(next=head)
+        
+        # Initialize pointers
+        prev, curr = dummy, head
+
+        # Iterate through the list
+        while curr:
+            # If the current node's value matches the target value
+            if curr.val == val:
+                # Skip the current node by pointing 'prev.next' to 'curr.next'
+                prev.next = curr.next
+            else:
+                # Otherwise, move 'prev' to 'curr'
+                prev = curr
+                
+            # Move 'curr' to the next node in the list
+            curr = curr.next
+        
+        # Return the head of the modified list, which is 'dummy.next'
+        return dummy.next
