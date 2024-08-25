@@ -1,0 +1,21 @@
+class Solution:
+    def canConstruct(self, ransomNote: str, magazine: str) -> bool:
+        counter = {}  # Initialize an empty dictionary to count characters in the magazine
+
+        # Loop through each character in the magazine to count occurrences
+        for c in magazine:
+            if c in counter:
+                counter[c] = counter[c] + 1  # Increment count if character already in dictionary
+            else:
+                counter[c] = 1  # Initialize count to 1 if character not in dictionary
+
+        # Loop through each character in the ransom note to check availability
+        for c in ransomNote:
+            if c not in counter:  # If character is not in magazine, return False
+                return False
+            elif counter[c] == 1:  # If character count is 1, delete from dictionary
+                del counter[c]
+            else:
+                counter[c] -= 1  # Decrement count if character is still available
+
+        return True  # If all characters in the ransom note are accounted for, return True
