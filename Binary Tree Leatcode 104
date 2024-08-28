@@ -1,0 +1,23 @@
+# Definition for a binary tree node.
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val  # Value of the current node
+        self.left = left  # Pointer to the left child
+        self.right = right  # Pointer to the right child
+
+class Solution:
+    def maxDepth(self, root):
+        # Base case: If the current node is None (i.e., we have reached the end of a branch),
+        # return 0 because there are no nodes below this point.
+        if not root:
+            return 0
+
+        # Recursively find the maximum depth of the left subtree.
+        left = self.maxDepth(root.left)
+
+        # Recursively find the maximum depth of the right subtree.
+        right = self.maxDepth(root.right)
+
+        # Return the maximum depth of either left or right subtree, plus 1 to account for
+        # the current node. The '1 +' part includes the current node in the depth count.
+        return 1 + max(left, right)
